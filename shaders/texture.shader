@@ -1,4 +1,4 @@
-﻿Shader "My Shaders/texture"
+﻿Shader "My Shaders/beguiner/texture"
 {
 	Properties
 	{
@@ -76,11 +76,11 @@
 				}
 
 				//Lighting
-				float3 diffuseReflection = atten * _LightColor0.xyz * saturate(dot(normalDirection, lightDirection));
-				float3 specularReflection = diffuseReflection * _SpecColor.xyz * pow( saturate( dot( reflect( -lightDirection, normalDirection), viewDirection ) ), _Shininess );
+				float3 diffuseReflection = atten * _LightColor0.xyz * saturate(dot(i.normalDir, lightDirection));
+				float3 specularReflection = diffuseReflection * _SpecColor.xyz * pow( saturate( dot( reflect( -lightDirection, i.normalDir), viewDirection ) ), _Shininess );
 				//rim lighting
-				float rim = 1 - saturate( dot( viewDirection, normalDirection ) );
-				float3 rimLighting = saturate( dot( viewDirection, normalDirection ) * _RimColor.xyz * _LightColor0.xyz * pow(rim, _RimPower) );
+				float rim = 1 - saturate( dot( viewDirection, i.normalDir ) );
+				float3 rimLighting = saturate( dot( viewDirection, i.normalDir ) * _RimColor.xyz * _LightColor0.xyz * pow(rim, _RimPower) );
 
 				float3 lightFinal = UNITY_LIGHTMODEL_AMBIENT.xyz + diffuseReflection + specularReflection + rimLighting;
 
@@ -161,7 +161,7 @@
 				float3 specularReflection = diffuseReflection * _SpecColor.xyz * pow( saturate( dot( reflect( -lightDirection, normalDirection), viewDirection ) ), _Shininess );
 				//rim lighting
 				float rim = 1 - saturate( dot( viewDirection, normalDirection ) );
-				float3 rimLighting = saturate( dot( viewDirection, normalDirection ) * _RimColor.xyz * _LightColor0.xyz * pow(rim, _RimPower) );
+				float3 rimLighting = saturate( dot( lightDirection, normalDirection ) * _RimColor.xyz * _LightColor0.xyz * pow(rim, _RimPower) );
 
 				float3 lightFinal = diffuseReflection + specularReflection + rimLighting;
 
