@@ -36,12 +36,13 @@
 				float3 normal : NORMAL;
 				float4 texcoord : TEXCOORD0;	
 			};
+			
 			struct vertexOutput
 			{
 				float4 pos : SV_POSITION;
 				float4 tex : TEXCOORD0;
 				float4 posWorld : TEXCOORD1;
-				float3 normalDir : TEXTCOORD2;
+				float3 normalDir : TEXCOORD2;
 			};
 
 			vertexOutput vert(vertexInput v)
@@ -139,7 +140,7 @@
 			float4 frag(vertexOutput i) : COLOR
 			{
 				float3 normalDirection = i.normalDir;
-				float3 viewDirection = normalize( _WorldSpaceCameraPos.xyz - i.posWorld);
+				float3 viewDirection = normalize( _WorldSpaceCameraPos.xyz - i.posWorld.xyz);
 				float3 lightDirection;
 				float atten;
 

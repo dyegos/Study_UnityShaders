@@ -70,7 +70,7 @@
 				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.tex = v.texcoord;
 
-				o.viewDirection = normalize( _WorldSpaceCameraPos.xyz - posWorld);
+				o.viewDirection = normalize( _WorldSpaceCameraPos.xyz - posWorld.xyz);
 				half3 fragmentToLightSource = _WorldSpaceLightPos0.xyz - posWorld.xyz;
 
 				o.lightDirection = fixed4
