@@ -123,7 +123,7 @@
 				float4 pos : SV_POSITION;
 				float4 tex : TEXCOORD0;
 				float4 posWorld : TEXCOORD1;
-				float3 normalDir : TEXTCOORD2;
+				float3 normalDir : TEXCOORD2;
 			};
 
 			vertexOutput vert(vertexInput v)

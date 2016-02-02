@@ -25,8 +25,6 @@
 			
 			#pragma vertex vert
 			#pragma fragment frag
-			
-			//#pragma target 4.0
 
 			uniform fixed4 _Color;
 			uniform fixed4 _SpecColor;

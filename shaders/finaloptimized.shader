@@ -53,9 +53,9 @@
 				half4 tex : TEXCOORD0;
 				fixed4 lightDirection : TEXCOORD1;
 				fixed3 viewDirection : TEXCOORD2;
-				fixed3 normalWorld : TEXTCOORD3;
-				fixed3 tangentWorld : TEXTCOORD4;
-				fixed3 biNormalWorld : TEXTCOORD5;
+				fixed3 normalWorld : TEXCOORD3;
+				fixed3 tangentWorld : TEXCOORD4;
+				fixed3 biNormalWorld : TEXCOORD5;
 			};
 
 			vertexOutput vert(vertexInput v)
@@ -159,9 +159,9 @@
 				half4 tex : TEXCOORD0;
 				fixed4 lightDirection : TEXCOORD1;
 				fixed3 viewDirection : TEXCOORD2;
-				fixed3 normalWorld : TEXTCOORD3;
-				fixed3 tangentWorld : TEXTCOORD4;
-				fixed3 biNormalWorld : TEXTCOORD5;
+				fixed3 normalWorld : TEXCOORD3;
+				fixed3 tangentWorld : TEXCOORD4;
+				fixed3 biNormalWorld : TEXCOORD5;
 			};
 
 			vertexOutput vert(vertexInput v)

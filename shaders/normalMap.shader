@@ -47,9 +47,9 @@
 				float4 pos : SV_POSITION;
 				float4 tex : TEXCOORD0;
 				float4 posWorld : TEXCOORD1;
-				float3 normalWorld : TEXTCOORD2;
-				float3 tangentWorld : TEXTCOORD3;
-				float3 biNormalWorld : TEXTCOORD4;
+				float3 normalWorld : TEXCOORD2;
+				float3 tangentWorld : TEXCOORD3;
+				float3 biNormalWorld : TEXCOORD4;
 			};
 
 			vertexOutput vert(vertexInput v)
@@ -153,9 +153,9 @@
 				float4 pos : SV_POSITION;
 				float4 tex : TEXCOORD0;
 				float4 posWorld : TEXCOORD1;
-				float3 normalWorld : TEXTCOORD2;
-				float3 tangentWorld : TEXTCOORD3;
-				float3 biNormalWorld : TEXTCOORD4;
+				float3 normalWorld : TEXCOORD2;
+				float3 tangentWorld : TEXCOORD3;
+				float3 biNormalWorld : TEXCOORD4;
 			};
 
 			vertexOutput vert(vertexInput v)
