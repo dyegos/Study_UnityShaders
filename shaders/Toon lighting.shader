@@ -85,11 +85,6 @@
 				fixed3 diffuseReflection = (1 - specularCutoff) * _Color.xyz * diffuseCutoff;
 				fixed3 specularReflection = _SpecColor.xyz * specularCutoff;
 				
-				//diffuse
-				//fixed3 diffuseReflection =  i.lightDir.w * _LightColor0 * nDotL;
-				//specular
-				//fixed3 specularReflection = diffuseReflection * _SpecColor.xyz * pow( saturate( dot( reflect( -i.lightDir.xyz, i.normalDir), i.viewDir ) ), _Shininess );
-				
 				fixed3 lightFinal = ambientLight + diffuseReflection + specularReflection;
 				
 				return fixed4(lightFinal, 1.0);

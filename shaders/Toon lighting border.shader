@@ -9,8 +9,9 @@
 		_SpecColor ("Specular Color", Color) = (1.0, 1.0, 1.0, 1.0)
 		_Shininess ("Shininess", Range(0.5, 1)) = 0.5
 		_SpecDiffusion ("Specular Diffusion", Range(0.0, 0.99)) = 0.0
-		_OutLineColor ("Outline Color", Color) = (0, 0, 0, 1);
-		_OutLineThickness ("")
+		_OutLineColor ("Outline Color", Color) = (0, 0, 0, 1)
+		_OutLineThickness ("OutLine Thickness", Range(0, 1)) = 0.1
+		_OutLineDiffusion ("OutLine Diffusion", Range(0, 1)) = 0.0
 	}
 
 	SubShader
@@ -31,6 +32,9 @@
 			uniform fixed4 _SpecColor;
 			uniform fixed _Shininess;
 			uniform half _SpecDiffusion;
+			uniform fixed4 _OutLineColor;
+			uniform fixed _OutLineThickness;
+			uniform fixed _OutLineDiffusion;
 			
 
 			uniform half4 _LightColor0;
@@ -83,16 +87,16 @@
 				fixed diffuseCutoff = saturate( (max(_DiffuseThreShold, nDotL) - _DiffuseThreShold) * pow( (2 - _Diffusion), 10 ) );
 				fixed specularCutoff = saturate( (max(_Shininess, dot( reflect( -i.lightDir.xyz, i.normalDir), i.viewDir )) - _Shininess) * pow( (2 - _SpecDiffusion), 10 ) );
 				
+				//calculate outline
+				fixed outlineStrenght = saturate( (dot(i.normalDir, i.viewDir) - _OutLineThickness) * pow((2 - _OutLineDiffusion), 10) + _OutLineThickness);
+				fixed3 outlineOverlay = (_OutLineColor.xyz * (1 - outlineStrenght)) + outlineStrenght;
+				
+				//lightinght
 				fixed3 ambientLight = (1 - diffuseCutoff) * _UnlitColor.xyz;
 				fixed3 diffuseReflection = (1 - specularCutoff) * _Color.xyz * diffuseCutoff;
 				fixed3 specularReflection = _SpecColor.xyz * specularCutoff;
 				
-				//diffuse
-				//fixed3 diffuseReflection =  i.lightDir.w * _LightColor0 * nDotL;
-				//specular
-				//fixed3 specularReflection = diffuseReflection * _SpecColor.xyz * pow( saturate( dot( reflect( -i.lightDir.xyz, i.normalDir), i.viewDir ) ), _Shininess );
-				
-				fixed3 lightFinal = ambientLight + diffuseReflection + specularReflection;
+				fixed3 lightFinal = (ambientLight + diffuseReflection + specularReflection) * outlineOverlay;
 				
 				return fixed4(lightFinal, 1.0);
 			}
